@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<!--
+  resume.html - Resume Builder tab
+  To merge: copy <section id="resumeTab"> ... </section> into shell.html.
+  All ids start with "resume" so they won't clash with our other files.
+  HTML only: CSS hooks = classes, JS hooks = ids.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Builder - Job Board project</title>
+    <!-- Same file names as shell.html -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===================== RESUME TAB ===================== -->
+    <section id="resumeTab" class="tab-content">
+
+        <h2>Resume Builder</h2>
+
+        <!-- Short summary of the tab -->
+        <p class="tab-summary">
+            Fill in your details below, pick a template which speaks to you, and watch your dream resume be made.
+            Using our AI and TAS scanner to help improve your resume, we will help you move towards your dream position!
+        </p>
+
+        <!-- Two columns: form (left), preview and AI (right) -->
+        <div class="resume-layout">
+
+            <!-- ================= LEFT COLUMN: THE FORM ================= -->
+            <section id="resumeFormArea" class="resume-form-area">
+                <h3>Your details</h3>
+
+                <!-- JS will handle the submit later -->
+                <form id="resumeForm" method="post" action="#">
+
+                    <p>Fields marked with * are required.</p>
+
+                    <!-- ---------- 1. TARGET JOB ---------- -->
+                    <fieldset id="resumeTargetSet">
+                        <legend>1. Target job</legend>
+
+                        <p>
+                            <label for="resumeJobTitle">Job title you want *</label>
+                            <!-- Suggestions while typing -->
+                            <input type="text" id="resumeJobTitle" name="jobTitle"
+                                   list="resumeJobTitleList" placeholder="e.g. Software Engineer Intern"
+                                   required minlength="2" maxlength="80">
+                            <datalist id="resumeJobTitleList">
+                                <option value="Software Engineer">
+                                <option value="Software Engineer Intern">
+                                <option value="Software Developer">
+                                <option value="Front-End Developer">
+                                <option value="Back-End Developer">
+                                <option value="Full-Stack Developer">
+                                <option value="Web Developer">
+                                <option value="Mobile App Developer">
+                                <option value="Machine Learning Engineer">
+                                <option value="AI Engineer">
+                                <option value="Data Scientist">
+                                <option value="Data Analyst">
+                                <option value="Data Engineer">
+                                <option value="Business Intelligence Analyst">
+                                <option value="DevOps Engineer">
+                                <option value="Cloud Engineer">
+                                <option value="Cybersecurity Analyst">
+                                <option value="Embedded Systems Engineer">
+                                <option value="Game Developer">
+                                <option value="QA Tester">
+                                <option value="IT Support Specialist">
+                                <option value="Network Administrator">
+                                <option value="Database Administrator">
+                                <option value="Electrical Engineer">
+                                <option value="Mechanical Engineer">
+                                <option value="Civil Engineer">
+                                <option value="Robotics Engineer">
+                                <option value="Project Manager">
+                                <option value="Product Manager">
+                                <option value="Business Analyst">
+                                <option value="Marketing Coordinator">
+                                <option value="Sales Representative">
+                                <option value="Accountant">
+                                <option value="Financial Analyst">
+                                <option value="Human Resources Assistant">
+                                <option value="UX/UI Designer">
+                                <option value="Graphic Designer">
+                                <option value="Content Writer">
+                                <option value="Research Assistant">
+                                <option value="Customer Service Representative">
+                                <option value="Teaching Assistant">
+                            </datalist>
+                        </p>
+
+                        <p>
+                            <label for="resumeField">Field</label>
+                            <!-- Grouped options -->
+                            <select id="resumeField" name="field">
+                                <option value="">Choose a field</option>
+                                <optgroup label="Software and web">
+                                    <option value="software">Software development</option>
+                                    <option value="frontend">Front-end / web design</option>
+                                    <option value="backend">Back-end development</option>
+                                    <option value="fullstack">Full-stack development</option>
+                                    <option value="mobile">Mobile apps</option>
+                                    <option value="game">Game development</option>
+                                    <option value="qa">QA and software testing</option>
+                                </optgroup>
+                                <optgroup label="AI and data">
+                                    <option value="ml">Machine learning / AI</option>
+                                    <option value="datascience">Data science</option>
+                                    <option value="data">Data analytics</option>
+                                    <option value="dataeng">Data engineering</option>
+                                    <option value="bi">Business intelligence</option>
+                                </optgroup>
+                                <optgroup label="IT and security">
+                                    <option value="cyber">Cybersecurity</option>
+                                    <option value="cloud">Cloud and DevOps</option>
+                                    <option value="itsupport">IT support</option>
+                                    <option value="network">Networking and systems</option>
+                                    <option value="dba">Database administration</option>
+                                </optgroup>
+                                <optgroup label="Engineering">
+                                    <option value="electrical">Electrical engineering</option>
+                                    <option value="computer">Computer engineering</option>
+                                    <option value="embedded">Embedded systems / firmware</option>
+                                    <option value="mechanical">Mechanical engineering</option>
+                                    <option value="civil">Civil engineering</option>
+                                    <option value="chemical">Chemical engineering</option>
+                                    <option value="biomedical">Biomedical engineering</option>
+                                    <option value="industrial">Industrial / manufacturing</option>
+                                    <option value="robotics">Robotics and mechatronics</option>
+                                    <option value="aerospace">Aerospace</option>
+                                </optgroup>
+                                <optgroup label="Business and finance">
+                                    <option value="accounting">Accounting</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="sales">Sales</option>
+                                    <option value="hr">Human resources</option>
+                                    <option value="pm">Project / product management</option>
+                                    <option value="ba">Business analysis</option>
+                                    <option value="supply">Supply chain and logistics</option>
+                                    <option value="consulting">Consulting</option>
+                                </optgroup>
+                                <optgroup label="Science and health">
+                                    <option value="research">Research and lab work</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="pharma">Pharmaceutical / life sciences</option>
+                                    <option value="environment">Environmental science</option>
+                                </optgroup>
+                                <optgroup label="Creative and media">
+                                    <option value="uxui">UX / UI design</option>
+                                    <option value="graphic">Graphic design</option>
+                                    <option value="writing">Writing and content</option>
+                                    <option value="media">Video and media production</option>
+                                </optgroup>
+                                <optgroup label="Education and public sector">
+                                    <option value="education">Education and teaching</option>
+                                    <option value="nonprofit">Non-profit</option>
+                                    <option value="government">Government</option>
+                                    <option value="legal">Legal</option>
+                                </optgroup>
+                                <optgroup label="Services and trades">
+                                    <option value="customer">Customer service</option>
+                                    <option value="retail">Retail</option>
+                                    <option value="hospitality">Hospitality and food service</option>
+                                    <option value="trades">Skilled trades</option>
+                                </optgroup>
+                                <optgroup label="Other">
+                                    <option value="other">Other (describe it in the job title)</option>
+                                </optgroup>
+                            </select>
+                        </p>
+
+                        <p>
+                            <label for="resumeJobType">Type of position</label>
+                            <select id="resumeJobType" name="jobType">
+                                <option value="coop" selected>Co-op / internship</option>
+                                <option value="fulltime">Full-time</option>
+                                <option value="parttime">Part-time</option>
+                                <option value="contract">Contract</option>
+                                <option value="volunteer">Volunteer</option>
+                            </select>
+                        </p>
+
+                        <!-- Radio buttons: pick one -->
+                        <fieldset id="resumeLevelSet">
+                            <legend>Experience level</legend>
+                            <input type="radio" id="resumeLevelStudent" name="level" value="student" checked>
+                            <label for="resumeLevelStudent">Student / Co-op</label>
+                            <input type="radio" id="resumeLevelEntry" name="level" value="entry">
+                            <label for="resumeLevelEntry">Entry level</label>
+                            <input type="radio" id="resumeLevelSenior" name="level" value="senior">
+                            <label for="resumeLevelSenior">Experienced</label>
+                        </fieldset>
+
+                        <p>
+                            <label for="resumeJobDesc">Paste the job posting (optional)</label>
+                            <textarea id="resumeJobDesc" name="jobDescription" rows="10" cols="60" maxlength="8000"
+                                      placeholder="Paste the posting and the AI will match your wording to it"></textarea>
+                        </p>
+                    </fieldset>
+
+                    <!-- ---------- 2. TEMPLATE (placeholder values for now) ---------- -->
+                    <fieldset id="resumeTemplateSet">
+                        <legend>2. Choose a template</legend>
+
+                        <div id="resumeTemplateGallery" class="resume-template-gallery">
+                            <figure class="resume-template-card">
+                                <label for="resumeTplClassic" class="resume-template-thumb">Preview coming soon</label>
+                                <figcaption>
+                                    <input type="radio" id="resumeTplClassic" name="template" value="classic" checked>
+                                    <label for="resumeTplClassic">Classic:</label>
+                                    <span>Traditional single column (placeholder)</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="resume-template-card">
+                                <label for="resumeTplModern" class="resume-template-thumb">Preview coming soon</label>
+                                <figcaption>
+                                    <input type="radio" id="resumeTplModern" name="template" value="modern">
+                                    <label for="resumeTplModern">Modern:</label>
+                                    <span>Two columns with a sidebar (placeholder)</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="resume-template-card">
+                                <label for="resumeTplCompact" class="resume-template-thumb">Preview coming soon</label>
+                                <figcaption>
+                                    <input type="radio" id="resumeTplCompact" name="template" value="compact">
+                                    <label for="resumeTplCompact">Compact:</label>
+                                    <span>Fits more on one page (placeholder)</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="resume-template-card">
+                                <label for="resumeTplAcademic" class="resume-template-thumb">Preview coming soon</label>
+                                <figcaption>
+                                    <input type="radio" id="resumeTplAcademic" name="template" value="academic">
+                                    <label for="resumeTplAcademic">Academic:</label>
+                                    <span>Education and research first (placeholder)</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="resume-template-card">
+                                <label for="resumeTplCreative" class="resume-template-thumb">Preview coming soon</label>
+                                <figcaption>
+                                    <input type="radio" id="resumeTplCreative" name="template" value="creative">
+                                    <label for="resumeTplCreative">Creative:</label>
+                                    <span>Bold header, for design roles (placeholder)</span>
+                                </figcaption>
+                            </figure>
+                            <figure class="resume-template-card">
+                                <label for="resumeTplPlainATS" class="resume-template-thumb">Preview coming soon</label>
+                                <figcaption>
+                                    <input type="radio" id="resumeTplPlainATS" name="template" value="plain">
+                                    <label for="resumeTplPlainATS">Plain ATS:</label>
+                                    <span>No styling, easiest for scanners (placeholder)</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- Placeholder style options -->
+                        <p>
+                            <label for="resumeAccent">Accent color</label>
+                            <input type="color" id="resumeAccent" name="accentColor" value="#003e6b">
+                        </p>
+                        <p>
+                            <label for="resumeFont">Font</label>
+                            <select id="resumeFont" name="fontFamily">
+                                <option value="serif">Serif</option>
+                                <option value="sans" selected>Sans-serif</option>
+                                <option value="mono">Monospace</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="resumeFontSize">Text size</label>
+                            <select id="resumeFontSize" name="fontSize">
+                                <option value="10">Small</option>
+                                <option value="11" selected>Medium</option>
+                                <option value="12">Large</option>
+                            </select>
+                        </p>
+                    </fieldset>
+
+                    <!-- ---------- 3. PERSONAL INFO (pattern + title = format check) ---------- -->
+                    <fieldset id="resumePersonalSet">
+                        <legend>3. Personal information</legend>
+
+                        <p>
+                            <label for="resumeName">Full name *</label>
+                            <input type="text" id="resumeName" name="fullName" placeholder="Jane Doe"
+                                   required minlength="2" maxlength="60" autocomplete="name"
+                                   pattern="[A-Za-z\u00C0-\u024F][A-Za-z\u00C0-\u024F\s.'\-]+"
+                                   title="Use letters, spaces, hyphens, apostrophes or periods only">
+                        </p>
+                        <p>
+                            <!-- Pattern requires a real domain like .com -->
+                            <label for="resumeEmail">Email *</label>
+                            <input type="email" id="resumeEmail" name="email" placeholder="jane@example.com"
+                                   required maxlength="100" autocomplete="email"
+                                   pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
+                                   title="Enter a full email address like jane@example.com">
+                        </p>
+                        <p>
+                            <!-- Format: XXX-XXX-XXXX -->
+                            <label for="resumePhone">Phone *</label>
+                            <input type="tel" id="resumePhone" name="phone" placeholder="905-555-0123"
+                                   required maxlength="12" inputmode="tel" autocomplete="tel"
+                                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                   title="Use the format 905-555-0123">
+                        </p>
+                        <p>
+                            <label for="resumeLocation">City and province *</label>
+                            <input type="text" id="resumeLocation" name="location" placeholder="Oshawa, ON"
+                                   required maxlength="60"
+                                   pattern="[A-Za-z\u00C0-\u024F][A-Za-z\u00C0-\u024F .'\-]+,\s?[A-Za-z]{2,}"
+                                   title="Use the format City, Province like Oshawa, ON">
+                        </p>
+                        <p>
+                            <label for="resumeLinkedin">LinkedIn profile (optional)</label>
+                            <input type="url" id="resumeLinkedin" name="linkedin" maxlength="150"
+                                   placeholder="https://www.linkedin.com/in/yourname"
+                                   pattern="https?://(www\.)?linkedin\.com/in/[A-Za-z0-9_%\-]+/?"
+                                   title="Use your LinkedIn profile link, like https://www.linkedin.com/in/yourname">
+                        </p>
+                        <p>
+                            <label for="resumeGithub">GitHub profile (optional)</label>
+                            <input type="url" id="resumeGithub" name="github" maxlength="150"
+                                   placeholder="https://github.com/yourname"
+                                   pattern="https?://(www\.)?github\.com/[A-Za-z0-9\-]+/?"
+                                   title="Use your GitHub profile link, like https://github.com/yourname">
+                        </p>
+                        <p>
+                            <label for="resumePortfolio">Portfolio website (optional)</label>
+                            <input type="url" id="resumePortfolio" name="portfolio" maxlength="150"
+                                   placeholder="https://yourname.dev"
+                                   pattern="https?://[A-Za-z0-9.\-]+\.[A-Za-z]{2,}(/.*)?"
+                                   title="Use a full web address starting with https://">
+                        </p>
+                    </fieldset>
+
+                    <!-- ---------- 4. SUMMARY ---------- -->
+                    <fieldset id="resumeSummarySet">
+                        <legend>4. Professional summary</legend>
+                        <p>
+                            <label for="resumeSummary">Two or three sentences about you</label>
+                            <!-- maxlength stops typing at 600 -->
+                            <textarea id="resumeSummary" name="summary" rows="8" cols="60"
+                                      minlength="30" maxlength="600"
+                                      placeholder="Second-year software engineering student interested in ..."></textarea>
+                        </p>
+                        <!-- JS later: update the character count -->
+                        <p>Characters used: <output id="resumeSummaryCount" for="resumeSummary">0</output> / 600</p>
+                    </fieldset>
+
+                    <!-- ---------- 5. EDUCATION (2nd school opens with <details>) ---------- -->
+                    <fieldset id="resumeEducationSet">
+                        <legend>5. Education</legend>
+
+                        <div id="resumeEducationEntries">
+                            <article class="resume-entry resume-education-entry">
+                                <p>
+                                    <label for="resumeSchool">School *</label>
+                                    <input type="text" id="resumeSchool" name="school" placeholder="Ontario Tech University" required minlength="2" maxlength="100">
+                                </p>
+                                <p>
+                                    <label for="resumeDegree">Degree / program *</label>
+                                    <input type="text" id="resumeDegree" name="degree" placeholder="BEng Software Engineering" required maxlength="100">
+                                </p>
+                                <p>
+                                    <label for="resumeEduStart">Start *</label>
+                                    <input type="month" id="resumeEduStart" name="eduStart" min="1990-01" max="2040-12" required>
+                                    <label for="resumeEduEnd">End (or expected) *</label>
+                                    <input type="month" id="resumeEduEnd" name="eduEnd" min="1990-01" max="2040-12" required>
+                                </p>
+                                <p>
+                                    <label for="resumeGpa">GPA (optional, out of 4.3)</label>
+                                    <input type="number" id="resumeGpa" name="gpa" min="0" max="4.3" step="0.01">
+                                </p>
+                                <p>
+                                    <label for="resumeCoursework">Relevant coursework (optional)</label>
+                                    <input type="text" id="resumeCoursework" name="coursework" maxlength="200"
+                                           placeholder="Web Programming, Data Structures, ...">
+                                </p>
+                            </article>
+
+                            <details id="resumeEducation2Box">
+                                <summary>Add a second school (optional)</summary>
+                                <article class="resume-entry resume-education-entry">
+                                <p>
+                                    <label for="resumeSchool2">School</label>
+                                    <input type="text" id="resumeSchool2" name="school2" placeholder="Ontario Tech University" minlength="2" maxlength="100">
+                                </p>
+                                <p>
+                                    <label for="resumeDegree2">Degree / program</label>
+                                    <input type="text" id="resumeDegree2" name="degree2" placeholder="BEng Software Engineering" maxlength="100">
+                                </p>
+                                <p>
+                                    <label for="resumeEduStart2">Start</label>
+                                    <input type="month" id="resumeEduStart2" name="eduStart2" min="1990-01" max="2040-12">
+                                    <label for="resumeEduEnd2">End (or expected)</label>
+                                    <input type="month" id="resumeEduEnd2" name="eduEnd2" min="1990-01" max="2040-12">
+                                </p>
+                                <p>
+                                    <label for="resumeGpa2">GPA (optional, out of 4.3)</label>
+                                    <input type="number" id="resumeGpa2" name="gpa2" min="0" max="4.3" step="0.01">
+                                </p>
+                                <p>
+                                    <label for="resumeCoursework2">Relevant coursework (optional)</label>
+                                    <input type="text" id="resumeCoursework2" name="coursework2" maxlength="200"
+                                           placeholder="Web Programming, Data Structures, ...">
+                                </p>
+                            </article>
+                            </details>
+                        </div>
+                    </fieldset>
+
+                    <!-- ---------- 6. WORK EXPERIENCE + STAR HELPER ---------- -->
+                    <fieldset id="resumeExperienceSet">
+                        <legend>6. Work and project experience</legend>
+
+                        <!-- Experience entries -->
+                        <div id="resumeExperienceEntries">
+                            <article class="resume-entry resume-experience-entry">
+                                <p>
+                                    <label for="resumeCompany">Company or project</label>
+                                    <input type="text" id="resumeCompany" name="company" maxlength="100">
+                                </p>
+                                <p>
+                                    <label for="resumeRole">Your role</label>
+                                    <input type="text" id="resumeRole" name="role" maxlength="100">
+                                </p>
+                                <p>
+                                    <label for="resumeExpStart">Start</label>
+                                    <input type="month" id="resumeExpStart" name="expStart" min="1990-01" max="2040-12">
+                                    <label for="resumeExpEnd">End</label>
+                                    <input type="month" id="resumeExpEnd" name="expEnd" min="1990-01" max="2040-12">
+                                    <input type="checkbox" id="resumeExpCurrent" name="expCurrent">
+                                    <label for="resumeExpCurrent">I currently work here</label>
+                                </p>
+                                <p>
+                                    <label for="resumeExpBullets">Bullet points (one per line)</label>
+                                    <textarea id="resumeExpBullets" name="expBullets" rows="10" cols="60" maxlength="1500"
+                                              placeholder="Built ... resulting in ..."></textarea>
+                                </p>
+                            </article>
+                        </div>
+
+                        <!-- JS later: add another experience block -->
+                        <button type="button" id="resumeAddExperienceBtn">Add another experience</button>
+
+                        <!-- STAR helper: Situation, Task, Action, Result -->
+                        <section id="resumeStarHelper" class="resume-star-helper">
+                            <h4>STAR bullet helper</h4>
+                            <p>Not sure how to word an accomplishment? Answer four quick prompts.</p>
+
+                            <fieldset id="resumeStarSet">
+                                <legend>Describe one accomplishment</legend>
+                                <p>
+                                    <label for="resumeStarS">Situation: what was going on?</label>
+                                    <textarea id="resumeStarS" name="starSituation" rows="5" cols="60" maxlength="400"
+                                              placeholder="Our team's website loaded slowly on mobile"></textarea>
+                                </p>
+                                <p>
+                                    <label for="resumeStarT">Task: what was your job?</label>
+                                    <textarea id="resumeStarT" name="starTask" rows="5" cols="60" maxlength="400"
+                                              placeholder="I was asked to speed up the main page"></textarea>
+                                </p>
+                                <p>
+                                    <label for="resumeStarA">Action: what did you do?</label>
+                                    <textarea id="resumeStarA" name="starAction" rows="5" cols="60" maxlength="400"
+                                              placeholder="Compressed images and removed unused scripts"></textarea>
+                                </p>
+                                <p>
+                                    <label for="resumeStarR">Result: what changed?</label>
+                                    <textarea id="resumeStarR" name="starResult" rows="5" cols="60" maxlength="400"
+                                              placeholder="Load time dropped from 6s to 2s"></textarea>
+                                </p>
+                                <p>
+                                    <label for="resumeStarTone">Style</label>
+                                    <select id="resumeStarTone" name="starTone">
+                                        <option value="concise" selected>Short and punchy</option>
+                                        <option value="detailed">More detail</option>
+                                        <option value="metrics">Focus on numbers</option>
+                                    </select>
+                                </p>
+                            </fieldset>
+
+                            <!-- JS + AI later -->
+                            <button type="button" id="resumeStarGenerateBtn">Generate bullet</button>
+
+                            <!-- JS fills in the generated bullet -->
+                            <p>Your bullet:</p>
+                            <output id="resumeStarOutput" for="resumeStarS resumeStarT resumeStarA resumeStarR">
+                                Your generated bullet will show up here.
+                            </output>
+                            <button type="button" id="resumeStarAddBtn">Add to experience</button>
+                        </section>
+                    </fieldset>
+
+                    <!-- ---------- 7. PROJECTS ---------- -->
+                    <fieldset id="resumeProjectsSet">
+                        <legend>7. Projects</legend>
+                        <p>
+                            <label for="resumeProjectName">Project name</label>
+                            <input type="text" id="resumeProjectName" name="projectName" maxlength="80">
+                        </p>
+                        <p>
+                            <label for="resumeProjectLink">Link (optional)</label>
+                            <input type="url" id="resumeProjectLink" name="projectLink" maxlength="150"
+                                   placeholder="https://github.com/yourname/project"
+                                   pattern="https?://[A-Za-z0-9.\-]+\.[A-Za-z]{2,}(/.*)?"
+                                   title="Use a full web address starting with https://">
+                        </p>
+                        <p>
+                            <label for="resumeProjectDesc">What it does and what you used</label>
+                            <textarea id="resumeProjectDesc" name="projectDescription" rows="7" cols="60" maxlength="600"></textarea>
+                        </p>
+                    </fieldset>
+
+                    <!-- ---------- 8. SKILLS ---------- -->
+                    <fieldset id="resumeSkillsSet">
+                        <legend>8. Skills</legend>
+                        <p>
+                            <label for="resumeSkills">Skills (separate with commas)</label>
+                            <input type="text" id="resumeSkills" name="skills" placeholder="Python, HTML, CSS, JavaScript, Git"
+                                   maxlength="300" pattern="[A-Za-z0-9+#.\/ ,\-]+"
+                                   title="Use letters, numbers and commas only, like Python, C++, Git">
+                        </p>
+
+                        <fieldset id="resumeSkillTypeSet">
+                            <legend>Skills to highlight</legend>
+                            <input type="checkbox" id="resumeSkillTech" name="highlight" value="technical" checked>
+                            <label for="resumeSkillTech">Technical</label>
+                            <input type="checkbox" id="resumeSkillSoft" name="highlight" value="soft">
+                            <label for="resumeSkillSoft">Soft skills</label>
+                            <input type="checkbox" id="resumeSkillLang" name="highlight" value="languages">
+                            <label for="resumeSkillLang">Languages spoken</label>
+                        </fieldset>
+                    </fieldset>
+
+                    <!-- ---------- FORM BUTTONS ---------- -->
+                    <p class="resume-form-buttons">
+                        <input type="submit" id="resumeSubmitBtn" value="Build my resume">
+                        <button type="button" id="resumeSaveBtn">Save draft</button>
+                        <input type="reset" id="resumeResetBtn" value="Clear form">
+                    </p>
+                </form>
+            </section>
+
+            <!-- ================= RIGHT COLUMN: PREVIEW + HELP ================= -->
+            <aside id="resumePreviewArea" class="resume-preview-area">
+
+                <h3>Live preview</h3>
+
+                <!-- JS fills in the resume here -->
+                <article id="resumePreview" class="resume-preview">
+                    <header>
+                        <h4 id="resumePrevName">Your name</h4>
+                        <p id="resumePrevContact">email | phone | city | links</p>
+                    </header>
+
+                    <section id="resumePrevSummary">
+                        <h5>Summary</h5>
+                        <p>Your summary will appear here.</p>
+                    </section>
+
+                    <section id="resumePrevEducation">
+                        <h5>Education</h5>
+                        <p>Your schools will appear here.</p>
+                    </section>
+
+                    <section id="resumePrevExperience">
+                        <h5>Experience</h5>
+                        <ul id="resumePrevBullets">
+                            <li>Your bullet points will appear here.</li>
+                        </ul>
+                    </section>
+
+                    <section id="resumePrevSkills">
+                        <h5>Skills</h5>
+                        <p>Your skills will appear here.</p>
+                    </section>
+                </article>
+
+                <p>
+                    <button type="button" id="resumeDownloadBtn">Download as PDF</button>
+                    <button type="button" id="resumePrintBtn">Print</button>
+                </p>
+
+                <!-- ================= ATS SCANNER (JS fills in results) ================= -->
+                <section id="resumeAtsScanner" class="resume-ats-scanner">
+                    <header>
+                        <h4>ATS resume scanner</h4>
+                        <p>Most companies run your resume through an ATS before anyone reads it.
+                           Scan yours to see how it scores for this job and which keywords are missing.
+                           To fix anything it finds, ask the trusty AI resume reviewer below.</p>
+                    </header>
+
+                    <button type="button" id="resumeAtsScanBtn">Scan my resume</button>
+
+                    <!-- Overall score (0-100) -->
+                    <p>ATS score: <output id="resumeAtsScore">--</output> / 100</p>
+
+                    <!-- Score breakdown table -->
+                    <table id="resumeAtsTable">
+                        <caption>ATS scan results</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Category</th>
+                                <th scope="col">Score</th>
+                                <th scope="col">What the scanner found</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Keyword match</th>
+                                <td class="resume-ats-score">--</td>
+                                <td class="resume-ats-note">Run a scan to see results.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Job title match</th>
+                                <td class="resume-ats-score">--</td>
+                                <td class="resume-ats-note"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Section headings</th>
+                                <td class="resume-ats-score">--</td>
+                                <td class="resume-ats-note"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Contact information</th>
+                                <td class="resume-ats-score">--</td>
+                                <td class="resume-ats-note"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Experience and results</th>
+                                <td class="resume-ats-score">--</td>
+                                <td class="resume-ats-note"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Readability for scanners</th>
+                                <td class="resume-ats-score">--</td>
+                                <td class="resume-ats-note"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- JS adds one <li> per keyword -->
+                    <div id="resumeAtsKeywords" class="resume-ats-keywords">
+                        <section id="resumeAtsFoundBox">
+                            <h5>Keywords found</h5>
+                            <ul id="resumeAtsFound"></ul>
+                        </section>
+                        <section id="resumeAtsMissingBox">
+                            <h5>Keywords missing</h5>
+                            <ul id="resumeAtsMissing"></ul>
+                        </section>
+                    </div>
+
+                </section>
+
+                <!-- ================= AI RESUME REVIEWER (CHATBOT) ================= -->
+                <section id="resumeChatbot" class="resume-chatbot">
+                    <header>
+                        <h4>AI resume reviewer</h4>
+                        <p>All AI changes happen here. Ask it to review your resume, make adjustments, improve your summary or
+                           bullet points, tailor it to the job, fix ATS scan issues, and more! This AI will be your new best 
+                           friend, and any suggested updates can be made to your resume for you.</p>
+                    </header>
+
+                    <!-- Chat log between AI: JS adds one message per reply -->
+                    <div id="resumeChatLog" class="resume-chat-log" role="log" aria-live="polite" aria-label="Conversation with the AI resume reviewer">
+                        <article class="resume-chat-message resume-chat-ai">
+                            <p>Hi! I am your AI assisstant, and i will be helping you review and improve
+                                your resume to make sure it stands out to employers and effectively showcases
+                                your skills, experience, and accomplishments. I can improve any part of
+                                your resume, fix ATS scan issues, and update your resume for you.</p>
+                        </article>
+                    </div>
+
+                    <!-- Hidden until JS shows it -->
+                    <p id="resumeChatTyping" class="resume-chat-typing" hidden>The AI is working on your resume...</p>
+
+                    <!-- Own form (forms can't be nested). JS sends the message and applies the AI's changes to the form -->
+                    <form id="resumeChatForm" method="post" action="#">
+                        <label for="resumeChatInput">Message the AI</label>
+                        <textarea id="resumeChatInput" name="chatMessage" rows="3" cols="40" maxlength="1000" required
+                                  placeholder="e.g. Review my resume for this job and fix anything that needs improving"></textarea>
+                        <input type="submit" id="resumeChatSendBtn" value="Send">
+                    </form>
+                </section>
+            </aside>
+
+        </div> <!-- end .resume-layout -->
+    </section>
+    <!-- =================== END RESUME TAB =================== -->
+
+</body>
+</html>
