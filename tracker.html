@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Tracker</title>
+</head>
+<body>
+
+    <section id="tracker" class="tab-panel" aria-labelledby="tracker-heading">
+
+        <header class="tracker-header">
+            <h2 id="tracker-heading">Application Tracker</h2>
+            <p>Keep track of every job you apply to and where it stands.</p>
+        </header>
+
+        <!--Add / Edit Application Form-->
+        <form id="tracker-form" class="tracker-form">
+            <fieldset>
+                <legend>Add an Application</legend>
+
+                <div class="form-row">
+                    <label for="app-company">Company</label>
+                    <input type="text" id="app-company" name="company" placeholder="e.g. Shopify" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="app-role">Job Title</label>
+                    <input type="text" id="app-role" name="role" placeholder="e.g. Junior Developer" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="app-location">Location</label>
+                    <input type="text" id="app-location" name="location" placeholder="e.g. Toronto, ON / Remote">
+                </div>
+
+                <div class="form-row">
+                    <label for="app-date">Date Applied</label>
+                    <input type="date" id="app-date" name="dateApplied">
+                </div>
+
+                <div class="form-row">
+                    <label for="app-status">Status</label>
+                    <select id="app-status" name="status" required>
+                        <option value="saved">Saved</option>
+                        <option value="applied" selected>Applied</option>
+                        <option value="interview">Interview</option>
+                        <option value="offer">Offer</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="app-link">Job Posting Link</label>
+                    <input type="url" id="app-link" name="link" placeholder="https://...">
+                </div>
+
+                <div class="form-row">
+                    <label for="app-notes">Notes</label>
+                    <textarea id="app-notes" name="notes" rows="3" placeholder="Contact name, follow-up date, etc."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="app-save-btn">Save Application</button>
+                    <button type="reset" id="app-clear-btn">Clear</button>
+                </div>
+            </fieldset>
+        </form>
+
+        <!--Toolbar: view toggle + filter-->
+        <div class="tracker-toolbar">
+            <div class="view-toggle" role="group" aria-label="Choose view">
+                <button type="button" id="view-board-btn" data-view="board" aria-pressed="true">Board View</button>
+                <button type="button" id="view-table-btn" data-view="table" aria-pressed="false">Table View</button>
+            </div>
+
+            <div class="tracker-filter">
+                <label for="tracker-search">Search</label>
+                <input type="search" id="tracker-search" placeholder="Search by company or role">
+
+                <label for="tracker-filter-status">Filter</label>
+                <select id="tracker-filter-status">
+                    <option value="all">All statuses</option>
+                    <option value="saved">Saved</option>
+                    <option value="applied">Applied</option>
+                    <option value="interview">Interview</option>
+                    <option value="offer">Offer</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+
+            <p class="tracker-count">Total applications: <span id="tracker-total">2</span></p>
+        </div>
+
+        <!--Kanban Board View-->
+        <div id="tracker-board" class="kanban-board">
+
+            <section class="kanban-column" data-status="saved" aria-labelledby="col-saved">
+                <h3 id="col-saved">Saved <span class="column-count">0</span></h3>
+                <ul class="kanban-list">
+                    <!-- cards get added here later-->
+                </ul>
+            </section>
+
+            <section class="kanban-column" data-status="applied" aria-labelledby="col-applied">
+                <h3 id="col-applied">Applied <span class="column-count">1</span></h3>
+                <ul class="kanban-list">
+                    <!-- Sample card (placeholder for later) -->
+                    <li class="app-card" data-id="sample-1">
+                        <article>
+                            <h4 class="app-card-company">Sample Company</h4>
+                            <p class="app-card-role">Junior Web Developer</p>
+                            <p class="app-card-meta">Toronto, ON &middot; Applied <time datetime="2026-11-05">Nov 5, 2026</time></p>
+                            <p class="app-card-notes">Follow up next week.</p>
+                            <div class="app-card-actions">
+                                <label for="status-sample-1">Move to</label>
+                                <select id="status-sample-1" class="app-card-status">
+                                    <option value="saved">Saved</option>
+                                    <option value="applied" selected>Applied</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                                <button type="button" class="app-card-edit">Edit</button>
+                                <button type="button" class="app-card-delete">Delete</button>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="kanban-column" data-status="interview" aria-labelledby="col-interview">
+                <h3 id="col-interview">Interview <span class="column-count">1</span></h3>
+                <ul class="kanban-list">
+                    <li class="app-card" data-id="sample-2">
+                        <article>
+                            <h4 class="app-card-company">Another Company</h4>
+                            <p class="app-card-role">IT Support Intern</p>
+                            <p class="app-card-meta">Remote &middot; Applied <time datetime="2026-10-28">Oct 28, 2026</time></p>
+                            <p class="app-card-notes">Interview on Nov 12.</p>
+                            <div class="app-card-actions">
+                                <label for="status-sample-2">Move to</label>
+                                <select id="status-sample-2" class="app-card-status">
+                                    <option value="saved">Saved</option>
+                                    <option value="applied">Applied</option>
+                                    <option value="interview" selected>Interview</option>
+                                    <option value="offer">Offer</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                                <button type="button" class="app-card-edit">Edit</button>
+                                <button type="button" class="app-card-delete">Delete</button>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="kanban-column" data-status="offer" aria-labelledby="col-offer">
+                <h3 id="col-offer">Offer <span class="column-count">0</span></h3>
+                <ul class="kanban-list"></ul>
+            </section>
+
+            <section class="kanban-column" data-status="rejected" aria-labelledby="col-rejected">
+                <h3 id="col-rejected">Rejected <span class="column-count">0</span></h3>
+                <ul class="kanban-list"></ul>
+            </section>
+
+        </div>
+
+        <!-- Table View (hidden until toggled in JS) -->
+        <div id="tracker-table-wrap" class="tracker-table-wrap" hidden>
+            <table id="tracker-table" class="tracker-table">
+                <caption>All Applications</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Company</th>
+                        <th scope="col">Job Title</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Date Applied</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tracker-table-body">
+                    <tr data-id="sample-1">
+                        <td>Sample Company</td>
+                        <td>Junior Web Developer</td>
+                        <td>Toronto, ON</td>
+                        <td><time datetime="2026-11-05">Nov 5, 2026</time></td>
+                        <td><span class="status-badge" data-status="applied">Applied</span></td>
+                        <td><a href="#" target="_blank" rel="noopener">View</a></td>
+                        <td>
+                            <button type="button" class="app-card-edit">Edit</button>
+                            <button type="button" class="app-card-delete">Delete</button>
+                        </td>
+                    </tr>
+                    <tr data-id="sample-2">
+                        <td>Another Company</td>
+                        <td>IT Support Intern</td>
+                        <td>Remote</td>
+                        <td><time datetime="2026-10-28">Oct 28, 2026</time></td>
+                        <td><span class="status-badge" data-status="interview">Interview</span></td>
+                        <td><a href="#" target="_blank" rel="noopener">View</a></td>
+                        <td>
+                            <button type="button" class="app-card-edit">Edit</button>
+                            <button type="button" class="app-card-delete">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Shown by JS when there are no applications yet -->
+        <p id="tracker-empty" class="tracker-empty" hidden>No applications yet. Add one above to get started.</p>
+
+    </section>
+
+</body>
+</html>
