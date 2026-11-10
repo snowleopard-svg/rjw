@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+
+<html>
+<head>
+    <title>moo</title>
+    <link rel="stlyesheet" href="whateverstyle.ccs">
+    <nav id="navbar" class="stlye">
+    <a href="index.html">Home</a>
+    <a href="jobs.html">Jobs</a>
+    <a href="companies.html">Companies</a>
+    <a href="contact.html">Contact</a>
+</nav>
+</head>
+
+<body>
+    <h1>Available jobs</h1>
+    <input
+    type="text"
+    id="searchBar"
+    placeholder="Search jobs...">
+
+<!--to make the jobcards-->
+<div id="job-container">
+<script src="whateverscript.js"></script>
+
+<!--example-->
+    <div class="job-card">
+        <h2>example</h2>
+        <p><strong>Company:</strong> Microsoft</p>
+        <p><strong>Location:</strong> Toronto</p>
+        <p><strong>Salary:</strong> $90,000</p>
+        <button>Apply</button>
+    </div>
+</div>
+
+<!--if user want to add a listing that isnt on the job board-->
+<h2>Don't see your job? You can add it here</h2>
+<button id="openBtn">Post a Job</button>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+
+        <span id="closeBtn"></span>
+
+        <h2>Post a New Job</h2>
+
+        <form id="jobForm">
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Job Title"
+                required>
+
+            <input
+                type="text"
+                id="company"
+                placeholder="Company"
+                required>
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Location"
+                required>
+
+            <textarea
+                id="description"
+                placeholder="Job Description">
+            </textarea>
+
+            <button type="submit">
+                Submit Job
+            </button>
+
+        </form>
+
+    </div>
+</div>
+ 
+<!--tracker-->
+<div id="tracker" class="style">
+    <h3>Track your porgress</h3>
+    <div id="tracker">
+        <h3>Statistics</h3>
+
+        <p>Total Jobs:
+            <span id="totalJobs">0</span>
+        </p>
+    </div>
+</div>
+
+
+</body>
+
+</html>
