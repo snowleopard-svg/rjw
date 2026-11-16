@@ -1,0 +1,152 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #eef2f6;
+  color: #0f172a;
+}
+
+/*                      NAVIGATION BAR                      */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #0f172a;
+}
+
+.nav-link--active {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.nav-link--active:hover {
+  color: #ffffff;
+}
+
+/*--------------------Home Dashboard--------------------*/
+.dashboard{
+    display: grid;
+    grid-template-columns: 1rf 340px;
+    min-height: calc(100vh - 65px);
+}
+
+.dashboard-main{
+    padding:2.5rem 3rem;
+}
+
+.welcome{
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.welcome h1{
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+}
+
+.welcome p {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/*--------------------Feature Dashboard--------------------*/
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.feature-card{
+    background-color: #e6ecf5;
+    border: 1px solid #94a3b8;
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.feature-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1.25rem;
+}
+
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.action-btn {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.6rem 0.5rem;
+  text-decoration: none;
+  color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s ease, transform 0.1s ease;
+}
+
+.action-btn:hover {
+  border-color: #64748b;
+  transform: translateY(-1px);
+}
+
+.btn-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.btn-tag {
+  font-size: 0.7rem;
+  color: #475569;
+  background-color: #e2e8f0;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+}
