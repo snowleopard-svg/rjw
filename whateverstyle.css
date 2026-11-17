@@ -1,0 +1,124 @@
+#job-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    
+}
+
+.job-card {
+    
+    border: 10% solid #ccc;
+    padding: 10%;
+    border-radius: 5%;
+    background-color: antiquewhite;
+}
+#page-title{
+text-align: center;  
+padding: 2%;
+padding-top: 5%;
+}
+#search-section {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#search-bar-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#keyword-search {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search-btn:hover {
+    background-color: #005fa3;
+}
+
+#advanced-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#advanced-filters select,
+#advanced-filters input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#clear-filters-btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: #888;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#clear-filters-btn:hover {
+    background-color: #666;
+}
+#tracker-container{
+    position: fixed;
+
+    right: 20px;
+    top: 100px;
+
+    width: 250px;
+
+    border: 1px solid black;
+    padding: 15px;
+    background-color: white;
+}
+.postjob{
+    padding: 5px;
+    display: block;
+    margin: 10px auto;
+}
+#post-job-heading{
+    text-align: center;  
+    padding: 2%;    
+}
+#navbar{
+    position: fixed;
+    background-color: antiquewhite;
+    background-attachment: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.nav-option{
+    padding-right: 100px;
+    padding-left: 50px;
+    ;
+}
+body {
+    margin: 0;
+}
+
+

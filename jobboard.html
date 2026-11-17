@@ -3,94 +3,228 @@
 <html>
 <head>
     <title>moo</title>
-    <link rel="stlyesheet" href="whateverstyle.ccs">
-    <nav id="navbar" class="stlye">
-    <a href="index.html">Home</a>
-    <a href="jobs.html">Jobs</a>
-    <a href="companies.html">Companies</a>
-    <a href="contact.html">Contact</a>
-</nav>
+    <link rel="stylesheet" href="whateverstyle.css">
+    <nav id="navbar">
+        <a id="home-link" class = "nav-option" href="index.html">Home</a>
+        <a id="jobs-link" class = "nav-option" href="jobs.html">Jobs</a>
+        <a id="companies-link" class = "nav-option" href="companies.html">Companies</a>
+        <a id="contact-link" class = "nav-option" href="contact.html">Contact</a>
+    </nav>
 </head>
 
 <body>
-    <h1>Available jobs</h1>
-    <input
-    type="text"
-    id="searchBar"
-    placeholder="Search jobs...">
 
-<!--to make the jobcards-->
-<div id="job-container">
-<script src="whateverscript.js"></script>
+    <h1 id="page-title">Available Jobs</h1>
 
-<!--example-->
-    <div class="job-card">
-        <h2>example</h2>
-        <p><strong>Company:</strong> Microsoft</p>
-        <p><strong>Location:</strong> Toronto</p>
-        <p><strong>Salary:</strong> $90,000</p>
-        <button>Apply</button>
+   <section id="search-section">
+
+    <div id="search-bar-container">
+        <input
+            type="text"
+            id="keyword-search"
+            name="keyword-search"
+            placeholder="Search jobs..."
+        >
+
+        <button id="search-btn" type="submit">
+            Search
+        </button>
     </div>
-</div>
 
-<!--if user want to add a listing that isnt on the job board-->
-<h2>Don't see your job? You can add it here</h2>
-<button id="openBtn">Post a Job</button>
+    <div id="advanced-filters">
 
-<div id="popup" class="popup">
-    <div class="popup-content">
+        <select id="job-type-filter" name="job-type">
+            <option value="">Job Type</option>
+            <option value="full-time">Full Time</option>
+            <option value="part-time">Part Time</option>
+            <option value="contract">Contract</option>
+            <option value="internship">Internship</option>
+        </select>
 
-        <span id="closeBtn"></span>
+        <select id="location-filter" name="location">
+            <option value="">Location</option>
+            <option value="remote">Remote</option>
+            <option value="toronto">Toronto</option>
+            <option value="vancouver">Vancouver</option>
+            <option value="montreal">Montreal</option>
+        </select>
 
-        <h2>Post a New Job</h2>
+        <select id="experience-filter" name="experience">
+            <option value="">Experience</option>
+            <option value="entry">Entry Level</option>
+            <option value="mid">Mid Level</option>
+            <option value="senior">Senior</option>
+        </select>
 
-        <form id="jobForm">
+        <input
+            type="number"
+            id="minimum-salary"
+            name="minimum-salary"
+            placeholder="Minimum Salary"
+        >
 
-            <input
-                type="text"
-                id="title"
-                placeholder="Job Title"
-                required>
+        <button id="clear-filters-btn" type="reset">
+            Clear Filters
+        </button>
 
-            <input
-                type="text"
-                id="company"
-                placeholder="Company"
-                required>
+    </div>
 
-            <input
-                type="text"
-                id="location"
-                placeholder="Location"
-                required>
+</section>
 
-            <textarea
-                id="description"
-                placeholder="Job Description">
-            </textarea>
+    <div id="job-container">
 
-            <button type="submit">
-                Submit Job
+        <div id="job-card-example" class="job-card">
+            <h2 id="job-title-example">Example</h2>
+
+            <p id="company-info">
+                <strong id="company-label">Company:</strong>
+                Microsoft
+            </p>
+
+            <p id="location-info">
+                <strong id="location-label">Location:</strong>
+                Toronto
+            </p>
+
+            <p id="salary-info">
+                <strong id="salary-label">Salary:</strong>
+                $90,000
+            </p>
+
+            <button id="apply-btn">
+                Apply
             </button>
+        </div>
 
-        </form>
+        <div id="job-card-example" class="job-card">
+            <h2 id="job-title-example">Example</h2>
+
+            <p id="company-info">
+                <strong id="company-label">Company:</strong>
+                Microsoft
+            </p>
+
+            <p id="location-info">
+                <strong id="location-label">Location:</strong>
+                Toronto
+            </p>
+
+            <p id="salary-info">
+                <strong id="salary-label">Salary:</strong>
+                $90,000
+            </p>
+
+            <button id="apply-btn">
+                Apply
+            </button>
+        </div> 
+
+        
+        <div id="job-card-example" class="job-card">
+            <h2 id="job-title-example">Example</h2>
+
+            <p id="company-info">
+                <strong id="company-label">Company:</strong>
+                Microsoft
+            </p>
+
+            <p id="location-info">
+                <strong id="location-label">Location:</strong>
+                Toronto
+            </p>
+
+            <p id="salary-info">
+                <strong id="salary-label">Salary:</strong>
+                $90,000
+            </p>
+
+            <button id="apply-btn">
+                Apply
+            </button>
+        </div>
+
+            <script src="whateverscript.js"></script>
+    </div>
+
+    <h2 id="post-job-heading">
+        Don't see your job? You can add it here
+    </h2>
+
+    <button id="openBtn">
+        Post a Job
+    </button>
+
+    <div id="popup" class="popup">
+
+        <div id="popup-content" class="popup-content">
+
+            <span id="closeBtn">✖</span>
+
+            <h2 id="popup-title">
+                Post a New Job
+            </h2>
+
+            <form id="jobForm">
+                <div class="postjob">
+                    <input
+                    type="text"
+                    id="title"
+                    placeholder="Job Title"
+                    required>
+                </div>
+                
+                <div class="postjob">
+                    <input
+                    type="text"
+                    id="company"
+                    placeholder="Company"
+                    required>
+                </div>
+                
+                <div class="postjob">
+                    <input
+                    type="text"
+                    id="location"
+                    placeholder="Location"
+                    required>
+                </div>
+                
+                <div class="postjob">
+                    <textarea id="description" placeholder="Job Description"></textarea>
+                </div>
+                
+                <div class="postjob">
+                    <button id="submit-job-btn" type="submit">Submit Job</button>
+                </div>
+                
+            </form>
+
+        </div>
 
     </div>
-</div>
- 
-<!--tracker-->
-<div id="tracker" class="style">
-    <h3>Track your porgress</h3>
-    <div id="tracker">
-        <h3>Statistics</h3>
 
-        <p>Total Jobs:
-            <span id="totalJobs">0</span>
-        </p>
+    <div id="tracker-container" >
+
+        <h3 id="tracker-title">
+            Track Your Progress
+        </h3>
+
+        <div id="statistics-panel">
+
+            <h3 id="statistics-title">
+                Statistics
+            </h3>
+
+            <p id="total-jobs-container">
+                Total Jobs:
+                <span id="totalJobs">0</span>
+            </p>
+
+        </div>
+
     </div>
-</div>
 
+    
 
 </body>
-
 </html>
