@@ -1,0 +1,174 @@
+/* colours */
+:root {
+    --bg: #edf0f5;
+    --box: #e3e9f2;
+    --text: #0f172a;
+    --grey: #475569;
+    --border: #cbd5e1;
+    --dark: #1e293b;
+}
+
+#tracker {
+    padding: 20px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
+
+/* header */
+.tracker-header p {
+    color: var(--grey);
+}
+
+/* form */
+.tracker-form fieldset {
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-row {
+    margin-bottom: 10px;
+}
+
+    .form-row label {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+        width: 100%;
+        padding: 6px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+button {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+#app-save-btn {
+    background-color: var(--dark);
+    color: white;
+}
+
+/* toolbar */
+.tracker-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* kanban board */
+.kanban-board {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.kanban-column {
+    flex: 1;
+    min-width: 200px;
+    background-color: var(--box);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+    .kanban-column h3 {
+        margin-top: 0;
+        padding-bottom: 8px;
+        border-bottom: 4px solid gray;
+    }
+
+    /* different colour for each column */
+    .kanban-column[data-status="applied"] h3 {
+        border-bottom-color: #3b82f6;
+    }
+
+    .kanban-column[data-status="interview"] h3 {
+        border-bottom-color: #f59e0b;
+    }
+
+    .kanban-column[data-status="offer"] h3 {
+        border-bottom-color: #22c55e;
+    }
+
+    .kanban-column[data-status="rejected"] h3 {
+        border-bottom-color: #ef4444;
+    }
+
+.column-count {
+    color: var(--grey);
+    font-weight: normal;
+}
+
+.kanban-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* cards */
+.app-card {
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+    .app-card h4 {
+        margin: 0 0 5px 0;
+    }
+
+    .app-card p {
+        margin: 3px 0;
+        font-size: 14px;
+    }
+
+.app-card-meta,
+.app-card-notes {
+    color: var(--grey);
+}
+
+.app-card-actions {
+    margin-top: 8px;
+}
+
+/* table view */
+.tracker-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin-top: 20px;
+}
+
+    .tracker-table th,
+    .tracker-table td {
+        border: 1px solid var(--border);
+        padding: 8px;
+        text-align: left;
+    }
+
+    .tracker-table th {
+        background-color: var(--box);
+    }
