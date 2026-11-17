@@ -16,14 +16,110 @@
 
     <h1 id="page-title">Available Jobs</h1>
 
-    <input
-        type="text"
-        id="searchBar"
-        placeholder="Search jobs..."
-    >
+   <section id="search-section">
+
+    <div id="search-bar-container">
+        <input
+            type="text"
+            id="keyword-search"
+            name="keyword-search"
+            placeholder="Search jobs..."
+        >
+
+        <button id="search-btn" type="submit">
+            Search
+        </button>
+    </div>
+
+    <div id="advanced-filters">
+
+        <select id="job-type-filter" name="job-type">
+            <option value="">Job Type</option>
+            <option value="full-time">Full Time</option>
+            <option value="part-time">Part Time</option>
+            <option value="contract">Contract</option>
+            <option value="internship">Internship</option>
+        </select>
+
+        <select id="location-filter" name="location">
+            <option value="">Location</option>
+            <option value="remote">Remote</option>
+            <option value="toronto">Toronto</option>
+            <option value="vancouver">Vancouver</option>
+            <option value="montreal">Montreal</option>
+        </select>
+
+        <select id="experience-filter" name="experience">
+            <option value="">Experience</option>
+            <option value="entry">Entry Level</option>
+            <option value="mid">Mid Level</option>
+            <option value="senior">Senior</option>
+        </select>
+
+        <input
+            type="number"
+            id="minimum-salary"
+            name="minimum-salary"
+            placeholder="Minimum Salary"
+        >
+
+        <button id="clear-filters-btn" type="reset">
+            Clear Filters
+        </button>
+
+    </div>
+
+</section>
 
     <div id="job-container">
 
+        <div id="job-card-example" class="job-card">
+            <h2 id="job-title-example">Example</h2>
+
+            <p id="company-info">
+                <strong id="company-label">Company:</strong>
+                Microsoft
+            </p>
+
+            <p id="location-info">
+                <strong id="location-label">Location:</strong>
+                Toronto
+            </p>
+
+            <p id="salary-info">
+                <strong id="salary-label">Salary:</strong>
+                $90,000
+            </p>
+
+            <button id="apply-btn">
+                Apply
+            </button>
+        </div>
+
+        <div id="job-card-example" class="job-card">
+            <h2 id="job-title-example">Example</h2>
+
+            <p id="company-info">
+                <strong id="company-label">Company:</strong>
+                Microsoft
+            </p>
+
+            <p id="location-info">
+                <strong id="location-label">Location:</strong>
+                Toronto
+            </p>
+
+            <p id="salary-info">
+                <strong id="salary-label">Salary:</strong>
+                $90,000
+            </p>
+
+            <button id="apply-btn">
+                Apply
+            </button>
+        </div> 
+
+        
         <div id="job-card-example" class="job-card">
             <h2 id="job-title-example">Example</h2>
 
