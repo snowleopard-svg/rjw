@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!--
   resume.html - Resume Builder tab
-  To merge: copy <section id="resumeTab"> ... </section> into shell.html.
   All ids start with "resume" so they won't clash with our other files.
   HTML only: CSS hooks = classes, JS hooks = ids.
 -->
@@ -9,8 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Resume Builder - Job Board project</title>
-    <!-- Same file names as shell.html -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="resume.css">
 </head>
 
 <body>
@@ -23,7 +21,7 @@
         <!-- Short summary of the tab -->
         <p class="tab-summary">
             Fill in your details below, pick a template which speaks to you, and watch your dream resume be made.
-            Using our AI and TAS scanner to help improve your resume, we will help you move towards your dream position!
+            Using our AI and ATS scanner to help improve your resume, we will help you move towards your dream position!
         </p>
 
         <!-- Two columns: form (left), preview and AI (right) -->
@@ -38,7 +36,7 @@
 
                     <p>Fields marked with * are required.</p>
 
-                    <!-- ---------- 1. TARGET JOB ---------- -->
+                    <!--  1. TARGET JOB  -->
                     <fieldset id="resumeTargetSet">
                         <legend>1. Target job</legend>
 
@@ -203,7 +201,7 @@
                         </p>
                     </fieldset>
 
-                    <!-- ---------- 2. TEMPLATE (placeholder values for now) ---------- -->
+                    <!--  2. TEMPLATE (placeholder values for now)  -->
                     <fieldset id="resumeTemplateSet">
                         <legend>2. Choose a template</legend>
 
@@ -259,6 +257,7 @@
                         </div>
 
                         <!-- Placeholder style options -->
+                        <div class="resume-style-options">
                         <p>
                             <label for="resumeAccent">Accent color</label>
                             <input type="color" id="resumeAccent" name="accentColor" value="#003e6b">
@@ -279,9 +278,10 @@
                                 <option value="12">Large</option>
                             </select>
                         </p>
+                        </div>
                     </fieldset>
 
-                    <!-- ---------- 3. PERSONAL INFO (pattern + title = format check) ---------- -->
+                    <!--  3. PERSONAL INFO (pattern + title = format check)  -->
                     <fieldset id="resumePersonalSet">
                         <legend>3. Personal information</legend>
 
@@ -338,7 +338,7 @@
                         </p>
                     </fieldset>
 
-                    <!-- ---------- 4. SUMMARY ---------- -->
+                    <!--  4. SUMMARY  -->
                     <fieldset id="resumeSummarySet">
                         <legend>4. Professional summary</legend>
                         <p>
@@ -352,7 +352,7 @@
                         <p>Characters used: <output id="resumeSummaryCount" for="resumeSummary">0</output> / 600</p>
                     </fieldset>
 
-                    <!-- ---------- 5. EDUCATION (2nd school opens with <details>) ---------- -->
+                    <!--  5. EDUCATION (2nd school opens with <details>)  -->
                     <fieldset id="resumeEducationSet">
                         <legend>5. Education</legend>
 
@@ -366,7 +366,7 @@
                                     <label for="resumeDegree">Degree / program *</label>
                                     <input type="text" id="resumeDegree" name="degree" placeholder="BEng Software Engineering" required maxlength="100">
                                 </p>
-                                <p>
+                                <p class="resume-row">
                                     <label for="resumeEduStart">Start *</label>
                                     <input type="month" id="resumeEduStart" name="eduStart" min="1990-01" max="2040-12" required>
                                     <label for="resumeEduEnd">End (or expected) *</label>
@@ -394,7 +394,7 @@
                                     <label for="resumeDegree2">Degree / program</label>
                                     <input type="text" id="resumeDegree2" name="degree2" placeholder="BEng Software Engineering" maxlength="100">
                                 </p>
-                                <p>
+                                <p class="resume-row">
                                     <label for="resumeEduStart2">Start</label>
                                     <input type="month" id="resumeEduStart2" name="eduStart2" min="1990-01" max="2040-12">
                                     <label for="resumeEduEnd2">End (or expected)</label>
@@ -414,7 +414,7 @@
                         </div>
                     </fieldset>
 
-                    <!-- ---------- 6. WORK EXPERIENCE + STAR HELPER ---------- -->
+                    <!--  6. WORK EXPERIENCE + STAR HELPER  -->
                     <fieldset id="resumeExperienceSet">
                         <legend>6. Work and project experience</legend>
 
@@ -429,11 +429,13 @@
                                     <label for="resumeRole">Your role</label>
                                     <input type="text" id="resumeRole" name="role" maxlength="100">
                                 </p>
-                                <p>
+                                <p class="resume-row">
                                     <label for="resumeExpStart">Start</label>
                                     <input type="month" id="resumeExpStart" name="expStart" min="1990-01" max="2040-12">
                                     <label for="resumeExpEnd">End</label>
                                     <input type="month" id="resumeExpEnd" name="expEnd" min="1990-01" max="2040-12">
+                                </p>
+                                <p class="resume-check">
                                     <input type="checkbox" id="resumeExpCurrent" name="expCurrent">
                                     <label for="resumeExpCurrent">I currently work here</label>
                                 </p>
@@ -497,7 +499,7 @@
                         </section>
                     </fieldset>
 
-                    <!-- ---------- 7. PROJECTS ---------- -->
+                    <!--  7. PROJECTS  -->
                     <fieldset id="resumeProjectsSet">
                         <legend>7. Projects</legend>
                         <p>
@@ -517,7 +519,7 @@
                         </p>
                     </fieldset>
 
-                    <!-- ---------- 8. SKILLS ---------- -->
+                    <!--  8. SKILLS  -->
                     <fieldset id="resumeSkillsSet">
                         <legend>8. Skills</legend>
                         <p>
@@ -538,7 +540,7 @@
                         </fieldset>
                     </fieldset>
 
-                    <!-- ---------- FORM BUTTONS ---------- -->
+                    <!--  FORM BUTTONS  -->
                     <p class="resume-form-buttons">
                         <input type="submit" id="resumeSubmitBtn" value="Build my resume">
                         <button type="button" id="resumeSaveBtn">Save draft</button>
@@ -671,7 +673,7 @@
                     <!-- Chat log between AI: JS adds one message per reply -->
                     <div id="resumeChatLog" class="resume-chat-log" role="log" aria-live="polite" aria-label="Conversation with the AI resume reviewer">
                         <article class="resume-chat-message resume-chat-ai">
-                            <p>Hi! I am your AI assisstant, and i will be helping you review and improve
+                            <p>Hi! I am your AI assistant, and I will be helping you review and improve
                                 your resume to make sure it stands out to employers and effectively showcases
                                 your skills, experience, and accomplishments. I can improve any part of
                                 your resume, fix ATS scan issues, and update your resume for you.</p>
@@ -694,6 +696,5 @@
         </div> <!-- end .resume-layout -->
     </section>
     <!-- =================== END RESUME TAB =================== -->
-
 </body>
 </html>

@@ -1,0 +1,673 @@
+/* resume.css - Resume Builder tab
+   Every rule is scoped to #resumeTab so it can't clash with the other tabs.
+
+/*  Standalone testing only: delete this block when merged (the shell sets it)  */
+body {
+  margin: 0;
+  padding: 40px 60px;
+  background: #eef2f6;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/*  Theme colors (change them here once and everything updates)  */
+#resumeTab {
+  --rs-ink: #0f172a;        /* headings */
+  --rs-text: #475569;       /* body text */
+  --rs-muted: #64748b;      /* hints and placeholders */
+  --rs-navy: #1e293b;       /* active nav pill color */
+  --rs-navy-dark: #0f172a;
+  --rs-bg: #eef2f6;         /* page background */
+  --rs-panel: #e6ecf5;      /* big rounded panels */
+  --rs-panel-line: #94a3b8;
+  --rs-line: #cbd5e1;       /* input borders */
+  --rs-soft: #e2e8f0;       /* chips and dividers */
+  --rs-faint: #f8fafc;
+  --rs-ring: rgba(30, 41, 59, 0.18);
+  --rs-good: #166534;
+  --rs-good-bg: #dcf1e4;
+  --rs-bad: #9f1d1d;
+  --rs-bad-bg: #fde8e8;
+
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-bottom: 72px;
+  box-sizing: border-box;
+  color: var(--rs-text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+#resumeTab *,
+#resumeTab *::before,
+#resumeTab *::after { box-sizing: border-box; }
+
+#resumeTab [hidden] { display: none !important; }
+
+/*  Title and intro (matches "Welcome to ResTrak")  */
+#resumeTab h2 {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--rs-ink);
+}
+
+#resumeTab .tab-summary {
+  max-width: 640px;
+  margin: 0 auto 36px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+#resumeTab h3 {
+  margin: 0 0 22px;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--rs-ink);
+}
+
+#resumeTab h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--rs-ink);
+}
+
+/* small gray "AI" chip, same look as the chips on the home page */
+#resumeTab .resume-ats-scanner h4::after,
+#resumeTab .resume-chatbot h4::after,
+#resumeTab #resumeStarHelper h4::after {
+  content: "AI";
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--rs-soft);
+  color: var(--rs-text);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/*  Page layout: form on the left, preview + AI on the right  */
+#resumeTab .resume-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+#resumeTab .resume-form-area,
+#resumeTab .resume-preview-area {
+  padding: 28px;
+  background: var(--rs-panel);
+  border: 1px solid var(--rs-panel-line);
+  border-radius: 14px;
+}
+
+/* right panel stays in view while filling in the long form, and scrolls on its own */
+#resumeTab .resume-preview-area {
+  position: sticky;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+#resumeTab .resume-preview-area h3 { margin: 0; }
+
+/*  Form cards (each fieldset is a white card)  */
+#resumeTab fieldset {
+  position: relative;
+  min-width: 0;
+  margin: 0 0 18px;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--rs-soft);
+  border-radius: 12px;
+}
+
+/* floated legend acts like a normal heading inside the card */
+#resumeTab legend {
+  float: left;
+  width: 100%;
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--rs-ink);
+}
+#resumeTab legend + * { clear: both; }
+
+/* fieldsets nested inside a card: no card look, small label-style legend */
+#resumeTab fieldset fieldset {
+  margin: 0 0 16px;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+#resumeTab fieldset fieldset > legend {
+  float: none;
+  width: auto;
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+#resumeForm p { margin: 0 0 16px; }
+
+#resumeTab label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--rs-ink);
+}
+
+/*  Inputs  */
+#resumeTab input:not([type="radio"], [type="checkbox"], [type="color"], [type="submit"], [type="reset"], [type="button"]),
+#resumeTab select,
+#resumeTab textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--rs-ink);
+  background: #fff;
+  border: 1px solid var(--rs-line);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#resumeTab ::placeholder { color: #94a3b8; }
+
+#resumeTab input:hover,
+#resumeTab select:hover,
+#resumeTab textarea:hover { border-color: var(--rs-panel-line); }
+
+#resumeTab input:focus,
+#resumeTab select:focus,
+#resumeTab textarea:focus {
+  outline: none;
+  border-color: var(--rs-navy);
+  box-shadow: 0 0 0 3px var(--rs-ring);
+}
+
+/* red outline only after the user has typed something invalid (works with our patterns) */
+#resumeTab input:user-invalid,
+#resumeTab textarea:user-invalid {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+#resumeTab textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+
+#resumeTab select {
+  padding-right: 38px;
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23475569' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+#resumeTab input[type="color"] {
+  width: 64px;
+  height: 42px;
+  padding: 3px;
+  background: #fff;
+  border: 1px solid var(--rs-line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* start / end dates side by side */
+#resumeTab .resume-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  gap: 6px 16px;
+}
+
+/* single checkbox ("I currently work here") */
+#resumeTab .resume-check { display: flex; align-items: center; gap: 8px; }
+#resumeTab .resume-check label { margin: 0; font-weight: 400; color: var(--rs-text); }
+#resumeTab input[type="checkbox"],
+#resumeTab input[type="radio"] { accent-color: var(--rs-navy); }
+#resumeTab .resume-check input { width: 18px; height: 18px; margin: 0; }
+
+/* experience level + skill type become pills, like the nav buttons */
+#resumeLevelSet input,
+#resumeSkillTypeSet input { position: absolute; opacity: 0; pointer-events: none; }
+
+#resumeLevelSet input + label,
+#resumeSkillTypeSet input + label {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid var(--rs-line);
+  border-radius: 999px;
+  color: var(--rs-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+#resumeLevelSet input + label:hover,
+#resumeSkillTypeSet input + label:hover { border-color: var(--rs-panel-line); }
+#resumeLevelSet input:checked + label,
+#resumeSkillTypeSet input:checked + label {
+  background: var(--rs-navy);
+  border-color: var(--rs-navy);
+  color: #fff;
+}
+#resumeLevelSet input:focus-visible + label,
+#resumeSkillTypeSet input:focus-visible + label { box-shadow: 0 0 0 3px var(--rs-ring); }
+
+/* character counter under the summary */
+#resumeForm p:has(#resumeSummaryCount) {
+  margin-top: -8px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--rs-muted);
+}
+
+/*  Education / experience entries  */
+#resumeTab .resume-entry {
+  margin: 0 0 14px;
+  padding: 18px 18px 2px;
+  background: var(--rs-faint);
+  border: 1px solid var(--rs-soft);
+  border-radius: 12px;
+}
+
+#resumeTab details {
+  margin: 0 0 14px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--rs-line);
+  border-radius: 12px;
+}
+#resumeTab summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  list-style: none;
+  background: var(--rs-faint);
+  color: var(--rs-ink);
+  font-weight: 600;
+  cursor: pointer;
+}
+#resumeTab summary::-webkit-details-marker { display: none; }
+#resumeTab summary::before {
+  content: "+";
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--rs-soft);
+  font-weight: 700;
+  line-height: 1;
+}
+#resumeTab details[open] > summary { border-bottom: 1px solid var(--rs-soft); }
+#resumeTab details[open] > summary::before { content: "\2212"; }
+#resumeTab details > .resume-entry { margin: 16px; }
+
+/*  Buttons  */
+#resumeTab button,
+#resumeTab input[type="submit"],
+#resumeTab input[type="reset"] {
+  padding: 10px 18px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--rs-ink);
+  background: #fff;
+  border: 1px solid var(--rs-line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+#resumeTab button:hover,
+#resumeTab input[type="submit"]:hover,
+#resumeTab input[type="reset"]:hover { background: #f1f5f9; border-color: var(--rs-panel-line); }
+#resumeTab button:active,
+#resumeTab input[type="submit"]:active { transform: translateY(1px); }
+#resumeTab button:focus-visible,
+#resumeTab input[type="submit"]:focus-visible,
+#resumeTab input[type="reset"]:focus-visible,
+#resumeTab summary:focus-visible { outline: 2px solid var(--rs-navy); outline-offset: 2px; }
+
+/* main actions use the navy pill color */
+#resumeSubmitBtn, #resumeAtsScanBtn, #resumeStarGenerateBtn,
+#resumeDownloadBtn, #resumeChatSendBtn {
+  color: #fff !important;
+  background: var(--rs-navy) !important;
+  border-color: var(--rs-navy) !important;
+}
+#resumeSubmitBtn:hover, #resumeAtsScanBtn:hover, #resumeStarGenerateBtn:hover,
+#resumeDownloadBtn:hover, #resumeChatSendBtn:hover { background: var(--rs-navy-dark) !important; }
+
+/* "add another" button: dashed outline */
+#resumeAddExperienceBtn {
+  width: 100%;
+  color: var(--rs-text);
+  background: transparent;
+  border: 1.5px dashed var(--rs-panel-line);
+}
+#resumeAddExperienceBtn:hover { background: #fff; }
+
+/* save / submit / clear stay visible at the bottom while scrolling the long form */
+#resumeTab .resume-form-buttons {
+  position: sticky;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--rs-line);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.1);
+}
+#resumeResetBtn { margin-left: auto; color: var(--rs-muted) !important; border-color: transparent !important; background: transparent !important; }
+#resumeResetBtn:hover { color: var(--rs-ink) !important; background: #f1f5f9 !important; }
+
+/*  Template picker  */
+#resumeTab .resume-template-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+#resumeTab .resume-template-card {
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--rs-line);
+  border-radius: 12px;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+#resumeTab .resume-template-card:hover { border-color: var(--rs-panel-line); transform: translateY(-2px); }
+#resumeTab .resume-template-card:has(input:checked) {
+  border-color: var(--rs-navy);
+  box-shadow: 0 0 0 2px var(--rs-navy);
+}
+
+/* placeholder thumbnail: a tiny fake resume drawn with gradients */
+#resumeTab .resume-template-thumb {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0;
+  padding: 8px;
+  aspect-ratio: 3 / 4;
+  color: #94a3b8;
+  font-size: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  background:
+    linear-gradient(var(--rs-navy), var(--rs-navy)) 14px 14px / 42% 8px no-repeat,
+    linear-gradient(var(--rs-line), var(--rs-line)) 14px 30px / 64% 4px no-repeat,
+    repeating-linear-gradient(var(--rs-soft) 0 4px, transparent 4px 11px) 14px 48px / calc(100% - 28px) 58% no-repeat,
+    #fff;
+}
+#resumeTab .resume-template-card:nth-child(2) .resume-template-thumb {   /* modern: sidebar */
+  background:
+    linear-gradient(#dbe3ef, #dbe3ef) 0 0 / 34% 100% no-repeat,
+    linear-gradient(var(--rs-navy), var(--rs-navy)) 42% 14px / 45% 8px no-repeat,
+    repeating-linear-gradient(var(--rs-soft) 0 4px, transparent 4px 11px) 42% 40px / 52% 55% no-repeat,
+    #fff;
+}
+#resumeTab .resume-template-card:nth-child(3) .resume-template-thumb {   /* compact: tighter lines */
+  background:
+    linear-gradient(var(--rs-navy), var(--rs-navy)) 14px 14px / 38% 7px no-repeat,
+    repeating-linear-gradient(var(--rs-soft) 0 3px, transparent 3px 8px) 14px 32px / calc(100% - 28px) 66% no-repeat,
+    #fff;
+}
+#resumeTab .resume-template-card:nth-child(4) .resume-template-thumb {   /* academic: centered header */
+  background:
+    linear-gradient(var(--rs-navy), var(--rs-navy)) 50% 14px / 46% 8px no-repeat,
+    linear-gradient(var(--rs-line), var(--rs-line)) 50% 30px / 60% 4px no-repeat,
+    repeating-linear-gradient(var(--rs-soft) 0 4px, transparent 4px 11px) 14px 48px / calc(100% - 28px) 58% no-repeat,
+    #fff;
+}
+#resumeTab .resume-template-card:nth-child(5) .resume-template-thumb {   /* creative: color band */
+  background:
+    linear-gradient(var(--rs-navy), var(--rs-navy)) 0 0 / 100% 26% no-repeat,
+    repeating-linear-gradient(var(--rs-soft) 0 4px, transparent 4px 11px) 14px 38% / calc(100% - 28px) 50% no-repeat,
+    #fff;
+}
+#resumeTab .resume-template-card:nth-child(6) .resume-template-thumb {   /* plain: text only */
+  background:
+    repeating-linear-gradient(var(--rs-soft) 0 4px, transparent 4px 11px) 14px 16px / calc(100% - 28px) 72% no-repeat,
+    #fff;
+}
+
+#resumeTab .resume-template-card figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  align-items: center;
+  padding: 10px 12px;
+  border-top: 1px solid var(--rs-soft);
+}
+#resumeTab .resume-template-card input { margin: 0; }
+#resumeTab .resume-template-card figcaption label { margin: 0; font-weight: 600; cursor: pointer; }
+#resumeTab .resume-template-card figcaption span {
+  grid-column: 1 / -1;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--rs-muted);
+}
+
+#resumeTab .resume-style-options {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 12px 16px;
+  align-items: end;
+}
+#resumeTab .resume-style-options p { margin: 0 !important; }
+
+/*  STAR helper  */
+#resumeStarHelper {
+  margin-top: 22px;
+  padding: 20px;
+  background: var(--rs-panel);
+  border: 1px solid var(--rs-line);
+  border-radius: 12px;
+}
+#resumeStarHelper > p { margin: 0 0 14px; font-size: 0.9rem; }
+#resumeStarHelper button { margin-right: 8px; }
+#resumeStarOutput {
+  display: block;
+  min-height: 56px;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px dashed var(--rs-panel-line);
+  border-radius: 10px;
+  color: var(--rs-muted);
+  font-size: 0.9rem;
+}
+
+/*  Live preview (the "paper")  */
+#resumeTab .resume-preview {
+  min-height: 520px;
+  padding: 36px 40px;
+  background: #fff;
+  border: 1px solid var(--rs-line);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+#resumeTab .resume-preview header {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  text-align: center;
+  border-bottom: 2px solid var(--rs-navy);
+}
+#resumeTab .resume-preview h4 {
+  display: block;
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+#resumeTab .resume-preview header p { margin: 0; font-size: 0.85rem; color: var(--rs-muted); }
+#resumeTab .resume-preview section { margin-bottom: 16px; }
+#resumeTab .resume-preview h5 {
+  margin: 0 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rs-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rs-navy);
+}
+#resumeTab .resume-preview p,
+#resumeTab .resume-preview li { margin: 0 0 4px; font-size: 0.9rem; }
+#resumeTab .resume-preview ul { margin: 0; padding-left: 18px; }
+
+#resumeTab .resume-preview-area > p { display: flex; gap: 10px; margin: 0; }
+#resumeDownloadBtn { flex: 1; }
+
+/*  ATS scanner + AI chatbot (white cards inside the right panel)  */
+#resumeTab .resume-ats-scanner,
+#resumeTab .resume-chatbot {
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--rs-soft);
+  border-radius: 12px;
+}
+#resumeTab .resume-ats-scanner > header p,
+#resumeTab .resume-chatbot > header p { margin: 0 0 16px; font-size: 0.9rem; }
+
+#resumeAtsScanBtn { width: 100%; }
+
+#resumeTab .resume-ats-scanner > p {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0;
+  color: var(--rs-muted);
+}
+#resumeAtsScore {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--rs-ink);
+}
+
+/* results table (striped rows + hover, like the Chapter 5 "boxes and zebras" idea) */
+#resumeAtsTable { width: 100%; margin-bottom: 18px; border-collapse: collapse; font-size: 0.875rem; }
+#resumeAtsTable caption { padding-bottom: 8px; text-align: left; font-weight: 600; color: var(--rs-ink); }
+#resumeAtsTable th,
+#resumeAtsTable td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rs-soft); }
+#resumeAtsTable thead th {
+  background: var(--rs-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rs-muted);
+}
+#resumeAtsTable thead th:first-child { border-top-left-radius: 8px; }
+#resumeAtsTable thead th:last-child { border-top-right-radius: 8px; }
+#resumeAtsTable tbody th { font-weight: 600; color: var(--rs-ink); }
+#resumeAtsTable tbody tr:nth-child(even) { background: var(--rs-faint); }
+#resumeAtsTable tbody tr:hover { background: var(--rs-bg); }
+#resumeAtsTable th:nth-child(2),
+#resumeAtsTable .resume-ats-score { width: 64px; text-align: center; }
+#resumeAtsTable .resume-ats-score { font-weight: 700; color: var(--rs-ink); }
+#resumeAtsTable .resume-ats-note { color: var(--rs-muted); }
+
+/* keyword chips */
+#resumeTab .resume-ats-keywords { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+#resumeTab .resume-ats-keywords section {
+  padding: 14px;
+  background: var(--rs-faint);
+  border: 1px solid var(--rs-soft);
+  border-radius: 10px;
+}
+#resumeTab .resume-ats-keywords h5 {
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rs-muted);
+}
+#resumeTab .resume-ats-keywords ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+#resumeTab .resume-ats-keywords ul:empty::before { content: "None yet"; font-size: 0.8rem; color: var(--rs-muted); }
+#resumeTab .resume-ats-keywords li { padding: 3px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 500; }
+#resumeAtsFound li { background: var(--rs-good-bg); color: var(--rs-good); }
+#resumeAtsMissing li { background: var(--rs-bad-bg); color: var(--rs-bad); }
+
+/* chat window */
+#resumeTab .resume-chat-log {
+  height: 340px;
+  margin-bottom: 12px;
+  padding: 14px;
+  overflow-y: auto;
+  background: var(--rs-bg);
+  border: 1px solid var(--rs-soft);
+  border-radius: 12px;
+  scroll-behavior: smooth;
+}
+#resumeTab .resume-chat-message {
+  max-width: 86%;
+  margin: 0 0 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+}
+#resumeTab .resume-chat-message p { margin: 0; }
+#resumeTab .resume-chat-ai {
+  background: #fff;
+  border: 1px solid var(--rs-soft);
+  border-bottom-left-radius: 4px;
+}
+#resumeTab .resume-chat-user {
+  margin-left: auto;
+  background: var(--rs-navy);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+#resumeTab .resume-chat-typing { margin: 0 0 12px; font-size: 0.82rem; font-style: italic; color: var(--rs-muted); }
+
+#resumeChatForm { display: grid; grid-template-columns: 1fr auto; gap: 8px 10px; align-items: end; }
+#resumeChatForm label { grid-column: 1 / -1; margin: 0; }
+#resumeChatInput { min-height: 72px; }
+
+/*  Smaller screens  */
+@media (max-width: 1100px) {
+  #resumeTab .resume-layout { grid-template-columns: 1fr; }
+  #resumeTab .resume-preview-area { position: static; max-height: none; overflow: visible; }
+}
+
+@media (max-width: 640px) {
+  body { padding: 24px 16px; }
+  #resumeTab h2 { font-size: 1.8rem; }
+  #resumeTab .resume-form-area,
+  #resumeTab .resume-preview-area { padding: 16px; }
+  #resumeTab fieldset { padding: 16px; }
+  #resumeTab .resume-row { grid-auto-flow: row; grid-template-columns: 1fr; grid-template-rows: none; }
+  #resumeTab .resume-style-options { grid-template-columns: 1fr; }
+  #resumeTab .resume-ats-keywords { grid-template-columns: 1fr; }
+  #resumeTab .resume-preview { padding: 22px; }
+  #resumeChatForm { grid-template-columns: 1fr; }
+}
